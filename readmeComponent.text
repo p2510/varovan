@@ -1,0 +1,60 @@
+pour créer un composant d'abord on lance la commande 
+
+php artisan make:component NomDuComposant 
+
+le nom du composant dois être en studlycase ( c'est à dire chaque prémière lettre d'un mot en majuscule )
+
+apès cela on se rend dans le fichier resources puis le sous dossier views 
+
+une fois dans views on aura deux dossier à utiliser , d'abord le dossier components qui va contenir le fichier générer mais avec un nom sous 
+la notation kebab-case c'est ç dire séparer par des tiret . dans ce fichier on  va écrire notre code composant 
+
+à l'intérieur du fichier listsComponents.blade.php on  va afficher le contenu histoire de commment ça s'affiche , c'est un peu comme le bloc 
+qui regroupe tous les composants . 
+pour affihcer un compoent on commence par x puis - et le nom du composnant tout en respectant la notation kebab-case 
+
+exemple : pour un composant qui s'appelle card-grid.blade.php on aura ceci <x-card-grid />
+
+
+
+si le composant contient des éléments qui peuvent varier comme par exemple le boutton qui peut avoir plusieurs couleur alors tu dois créer la varaible 
+nécessaire . et pour cela tu dois te rendre dans le dossier app puis le sous dossier views/components et tu auras le code php du composant 
+
+
+pour créer une variable tu dois la déclarer en public puis $ et le nom de la variable ex : public $color . Le nom d'une variable 
+ne doit pas commencer par un chiffre et ne dois pas  contenir des caractères spéciaux encore moins d'espace. De préférence un nom simple suffit.
+
+puis le mot string suivis de $color à l'intérieur de la paranthèse du constructeur . s'il ya plusieurs varaiable alors séparer par des virgule 
+et enfin initialiser la variable dans la fonction constructeur . 
+
+Exemple : 
+
+    public  $color;
+    public function __construct(string $color)
+    {
+        $this->color=$color;
+    }
+
+
+
+comme tu as crée une variable alors pour l'utiliser dans le code du composant tu dois interpoler avec des doubles accolades cela 
+signifie la partie qui va vaier 
+
+exmple pour le composant btn.blade.php :      <button class="btn  {{$color}} ">Mon composant</button>
+
+pour maintenant appeler ce composant et afficher le composant en lui donner une valeur il faut considérer chaque variable comme un attribut html
+
+exmple dans le fihcier listsComponents.blade.php on a ceci  :  
+
+        <x-btn color="btn-danger" />
+   
+        <x-btn color="btn-primary" />
+
+        tu n'es pas obligé de créer toutes les couleurs possibles . si je veux utilise un bouton c'est à moi de finir la couleur que je veux 
+        en passant cela en tant qu'attribut dans n'importe qu'elle fichier .
+
+
+        
+
+
+
